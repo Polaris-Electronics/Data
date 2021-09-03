@@ -3,7 +3,7 @@ import time
 import csv
 import threading
 from datetime import datetime
-arduino = serial.Serial("/dev/ttyACM0",9600)
+arduino = serial.Serial("/dev/ttyACM1",9600)
 
 def store_data(humedad,temperature,indice_calor):
     time = datetime.now()
