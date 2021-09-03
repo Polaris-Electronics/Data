@@ -2,12 +2,13 @@ import serial
 import time
 import csv
 import threading
-arduino = serial.Serial("/dev/ttyACM3",9600)
+from datetime import datetime
+arduino = serial.Serial("/dev/ttyACM0",9600)
 
-def store_data(time,temperature,pressure,humidity):
-    append = [time,temperature,pressure,humidity]
-    with open('datos.txt', 'w') as csvFile:
-        csvFile.write(time)
+def store_data(humedad,temperature,indice_calor):
+    time = datetime.now()
+    with open('datos.txt', 'a') as csvFile:
+        csvFile.write(" $t={} $humidity={} $temperature={}  $heat_index={}\n".format(time,humedad,temperature,indice_calor))
     csvFile.close()
 
 
@@ -17,12 +18,12 @@ while True:
         t_string = raw.decode()
         temp = t_string.split("##")
         #print(t_string)
-        #print(temp)
-        temperatura=temp[6]
-        temperatura=temperatura.split()
-        temperatura=temperatura[0]
-        print(temperatura)
-        store_data()
-        
+        print(temp)
+        humedad=temp[0]
+        temperature=temp[1]
+        indice_calor=temp[2]
+        print(indice_calor)
+        store_data(humedad,temperature,indice_calor)
     except:
         pass
+        
