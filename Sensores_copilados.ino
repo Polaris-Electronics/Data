@@ -27,10 +27,6 @@ DHT dht(DHTPIN, DHTTYPE);
 const int Trigger = 8;
 const int Echo = 9;
 
- 
-
-
-
 void setup() {
   pinMode(3,INPUT);
   pinMode(2,INPUT);
@@ -113,18 +109,21 @@ void loop() {
   
   Serial.print(diferencia);
   
-  Serial.print("##");
+  Serial.print(" ##");
  //Velocidad
   Serial.print(velocidad);
   
-  Serial.print("##");
+  Serial.print(" ##");
 //Giroscopio
   sensor.getAcceleration(&ax, &ay, &az);
   sensor.getRotation(&gx, &gy, &gz);
-  Serial.print(ax); 
+  Serial.print(ax);
+  Serial.print(" ");
   Serial.print(ay); 
+  Serial.print(" ");
   Serial.print(az);
-  Serial.print("##");
+  Serial.print(" ");
+  Serial.print(" ##");
   Serial.print(gx);
   Serial.print(" ");
   Serial.print(gy);
@@ -134,9 +133,7 @@ void loop() {
   Serial.print("##");
   
 //Ultrasonico
-  Serial.print("Distance: ");
   Serial.print (d); 
-  Serial.print("cm");
   Serial.println();
   delay(1000);
     
